@@ -1,0 +1,37 @@
+<div class="board" [class.board--shake]="shaking()">
+  <!-- Reveal animation replays whenever the level changes. -->
+  <div
+    class="grid"
+    role="group"
+    aria-label="Game grid — tap the box that looks brighter"
+    [style.--n]="gridSize()"
+    [appReplayOn]="level()"
+  >
+    @for (cell of cells(); track cell.index) {
+      <button
+        type="button"
+        class="grid__box"
+        aria-label="Coloured box"
+        [style.background]="cell.color"
+        (click)="onSelect(cell)"
+      ></button>
+    }
+  </div>
+
+  <!-- Red wash on a wrong pick. -->
+  @if (flashing()) {
+    <div class="board__flash" aria-hidden="true"></div>
+  }
+
+  <!-- Floating reward popup on a correct pick. -->
+  @if (popup(); as p) {
+    <span
+      class="board__popup"
+      aria-hidden="true"
+      [appReplayOn]="p.nonce"
+      [style.left.%]="p.leftPct"
+      [style.top.%]="p.topPct"
+      >{{ p.text }}</span
+    >
+  }
+</div>

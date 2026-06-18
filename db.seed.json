@@ -1,0 +1,8 @@
+{
+  "highscores": [
+    { "id": "seed-grace", "name": "Grace", "timeMs": 38900, "createdAt": "2026-01-17T09:15:00.000Z" },
+    { "id": "seed-ada", "name": "Ada", "timeMs": 42310, "createdAt": "2026-01-15T10:00:00.000Z" },
+    { "id": "seed-linus", "name": "Linus", "timeMs": 51200, "createdAt": "2026-01-16T11:30:00.000Z" },
+    { "id": "seed-margaret", "name": "Margaret", "timeMs": 60450, "createdAt": "2026-01-14T14:45:00.000Z" }
+  ]
+}

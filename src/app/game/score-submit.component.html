@@ -1,0 +1,55 @@
+@switch (status()) {
+  @case ('success') {
+    <div class="submit submit--done" role="status">
+      <p class="submit__check" aria-hidden="true">✓</p>
+      <h3 class="submit__title">Score saved!</h3>
+      <p class="submit__hint">You're on the board. Nicely done.</p>
+      <a class="button button--primary" routerLink="/highscores"
+        >View highscores</a
+      >
+    </div>
+  }
+  @default {
+    <form class="submit" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+      <label class="submit__field">
+        <span class="submit__label">Your name</span>
+        <input
+          class="submit__input"
+          type="text"
+          formControlName="name"
+          [maxlength]="maxNameLength"
+          autocomplete="name"
+          placeholder="e.g. Ada"
+          [attr.aria-invalid]="name.touched && name.invalid"
+          aria-describedby="name-error"
+        />
+        <!-- Live char count doubles as the ≤20 affordance. -->
+        <span class="submit__count" aria-hidden="true"
+          >{{ name.value.length }}/{{ maxNameLength }}</span
+        >
+      </label>
+
+      <p id="name-error" class="submit__error" role="alert">
+        @if (name.touched && name.hasError('required')) {
+          Please enter a name.
+        } @else if (name.hasError('maxlength')) {
+          Name must be {{ maxNameLength }} characters or fewer.
+        } @else if (name.hasError('server')) {
+          {{ name.errors?.['server'] }}
+        }
+      </p>
+
+      @if (serverError(); as err) {
+        <p class="submit__error submit__error--general" role="alert">{{ err }}</p>
+      }
+
+      <button
+        class="button button--primary submit__btn"
+        type="submit"
+        [disabled]="submitting()"
+      >
+        {{ submitting() ? 'Submitting…' : 'Submit score' }}
+      </button>
+    </form>
+  }
+}

@@ -1,0 +1,26 @@
+<main class="menu">
+  <!-- Decorative logo: the game's own mechanic, one odd box highlighted. -->
+  <div class="menu__logo" aria-hidden="true">
+    @for (cell of logoCells; track $index) {
+      <span
+        class="menu__logo-box"
+        [class.menu__logo-box--odd]="cell.isOdd"
+        [style.background]="cell.color"
+      ></span>
+    }
+  </div>
+
+  <div class="menu__card">
+    <p class="menu__eyebrow">Spot-the-odd-colour</p>
+    <h1 class="menu__title">Odd&nbsp;Box</h1>
+    <p class="menu__lede">
+      Five levels. The grid grows, the colours close in. Find the brighter box
+      &mdash; as fast as you can.
+    </p>
+
+    <nav class="menu__actions">
+      <a class="button button--primary" routerLink="/game">Play</a>
+      <a class="button" routerLink="/highscores">Highscores</a>
+    </nav>
+  </div>
+</main>

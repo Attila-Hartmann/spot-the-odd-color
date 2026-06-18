@@ -1,0 +1,92 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.submit {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+.submit__field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  text-align: left;
+}
+
+.submit__label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.submit__input {
+  width: 100%;
+  padding: 0.7rem 3.2rem 0.7rem 0.9rem;
+  font: inherit;
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--motion-fast);
+}
+.submit__input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+.submit__input[aria-invalid='true'] {
+  border-color: var(--color-danger);
+}
+
+.submit__count {
+  position: absolute;
+  right: 0.7rem;
+  bottom: 0.7rem;
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-muted);
+}
+
+.submit__error {
+  min-height: 1.2em;
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--color-danger);
+}
+.submit__error--general {
+  margin-top: var(--space-1);
+}
+
+.submit__btn {
+  margin-top: var(--space-1);
+}
+
+/* Success state */
+.submit--done {
+  align-items: center;
+  text-align: center;
+  gap: var(--space-3);
+  animation: ob-fade-in var(--motion-base) var(--ease-out) both;
+}
+.submit__check {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--color-accent-contrast);
+  background: var(--color-success);
+  border-radius: var(--radius-full);
+}
+.submit__title {
+  font-size: 1.4rem;
+}
+.submit__hint {
+  color: var(--color-text-muted);
+}

@@ -1,0 +1,81 @@
+/* Centered hero for the menu, built on the shared design tokens. */
+.menu {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-5);
+  padding: var(--space-5);
+}
+
+/* Decorative spot-the-odd-box grid above the card. */
+.menu__logo {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: clamp(4px, 1.2vw, 8px);
+  width: clamp(8rem, 36vw, 11rem);
+  aspect-ratio: 1;
+  animation: ob-zoom-in var(--motion-base) var(--ease-out) both;
+}
+
+.menu__logo-box {
+  border-radius: clamp(4px, 1.5vw, 8px);
+  /* base colour set inline */
+}
+
+.menu__logo-box--odd {
+  /* Lift the odd box so it reads as the target even at this small size. */
+  box-shadow:
+    0 0 0 2px var(--color-surface),
+    0 0 0 4px var(--color-accent),
+    0 6px 16px rgba(0, 0, 0, 0.25);
+  transform: scale(1.06);
+  position: relative;
+  z-index: 1;
+}
+
+.menu__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  max-width: 30rem;
+  padding: var(--space-7) var(--space-6);
+  text-align: center;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-2);
+  animation: ob-fade-in var(--motion-base) var(--ease-out) both;
+}
+
+.menu__eyebrow {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.menu__title {
+  font-size: clamp(2.75rem, 9vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.menu__lede {
+  margin: 0;
+  color: var(--color-text-muted);
+  text-wrap: balance;
+}
+
+.menu__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}

@@ -1,0 +1,57 @@
+<main class="game">
+  @if (store.status() !== 'finished') {
+    <a class="game__back" routerLink="/">&larr; Menu</a>
+  }
+
+  @switch (store.status()) {
+    @case ('countdown') {
+      <section class="game__stage game__stage--center">
+        <app-countdown [value]="store.countdown()" />
+      </section>
+    }
+
+    @case ('playing') {
+      <app-game-hud
+        [elapsedMs]="store.elapsedMs()"
+        [level]="store.level()"
+        [totalLevels]="store.totalLevels"
+        [gridSize]="store.gridSize()"
+        [delta]="store.brightnessDelta()"
+      />
+      <section class="game__stage">
+        <app-game-grid
+          [cells]="store.cells()"
+          [gridSize]="store.gridSize()"
+          [level]="store.level()"
+          (boxSelected)="store.selectBox($event)"
+        />
+      </section>
+    }
+
+    @case ('finished') {
+      <section class="game__result">
+        <p class="game__eyebrow">All five levels cleared</p>
+        <h1 class="game__time">{{ store.elapsedMs() | duration }}</h1>
+
+        @if (newRecord()) {
+          <p class="game__record">🏆 New personal best!</p>
+        } @else if (best() !== null) {
+          <p class="game__best">Personal best: {{ best()! | duration }}</p>
+        }
+
+        <app-score-submit [timeMs]="store.elapsedMs()" />
+
+        <div class="game__links">
+          <button class="button" type="button" (click)="playAgain()">
+            Play again
+          </button>
+          <a class="button" routerLink="/">Menu</a>
+        </div>
+      </section>
+    }
+  }
+
+  @if (celebrating()) {
+    <div class="game__winflash" aria-hidden="true"></div>
+  }
+</main>
